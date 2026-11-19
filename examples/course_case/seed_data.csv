@@ -1,0 +1,7 @@
+date,title,summary,url,author
+2026-11-10,某开源项目发布 2.0 版本,新版本改进了增量采集与去重性能,https://example.org/posts/release-2-0,示例作者
+2026-11-11,NVIDIA 公布新一代 GPU 架构,官方博客介绍面向 AI 训练的新架构,https://example.org/posts/nvidia-arch,示例作者
+2026-11-12,高校发布期末考试安排,教务处通知期末考试时间与考场规则,https://example.org/posts/exam,示例作者
+2026-11-13,DeepSeek 更新模型上下文长度,官方发布说明支持更长上下文窗口,https://example.org/posts/deepseek,示例作者
+2026-11-14,城市开放数据平台新增空气质量接口,新增逐小时 PM2.5 与温度观测,https://example.org/posts/air,示例作者
+2026-11-15,开源社区讨论 RSS 抓取限流,建议遵守 robots 与站点配额,https://example.org/posts/rss,示例作者

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mindos.localradar/schema/source.schema.json",
+  "title": "MindOS Radar Source",
+  "description": "数据源注册表条目的最小约束。公开配置不得包含任何秘密值。",
+  "type": "object",
+  "required": ["id", "name", "category", "access", "collector", "rights", "verification"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"const": 1},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 120},
+    "category": {
+      "enum": ["news", "policy", "technology", "ai", "opensource", "academic", "campus", "jobs",
+               "books", "anime", "media", "games", "audio", "social", "finance", "weather",
+               "ecology", "geo", "culture", "maker", "security", "government", "opendata", "other"]
+    },
+    "provider_url": {"type": ["string", "null"], "pattern": "^https?://"},
+    "docs_url": {"type": ["string", "null"], "pattern": "^https?://"},
+    "enabled_by_default": {"const": false},
+    "access": {
+      "type": "object",
+      "required": ["type", "auth"],
+      "properties": {
+        "type": {"enum": ["rss_atom", "rest_json", "open_csv", "school_bridge", "manual"]},
+        "base_url": {"type": ["string", "null"], "pattern": "^https?://"},
+        "auth": {"enum": ["none", "api_key", "oauth", "token", "login", "unknown", "restricted"]},
+        "secret_ref": {"type": ["string", "null"]},
+        "cost_tier": {"enum": ["F0", "F1", "F2", "F3", "F4", "FU", null]},
+        "quota": {"type": ["string", "null"]},
+        "quota_verified_at": {"type": ["string", "null"]}
+      }
+    },
+    "collector": {
+      "type": "object",
+      "required": ["adapter", "default_interval_minutes", "max_items_per_run"],
+      "properties": {
+        "adapter": {"type": "string", "minLength": 1},
+        "default_interval_minutes": {"type": "integer", "minimum": 1},
+        "max_items_per_run": {"type": "integer", "minimum": 1}
+      }
+    },
+    "rights": {
+      "type": "object",
+      "required": ["metadata", "fulltext", "download", "redistribution", "commercial_use"],
+      "properties": {
+        "metadata": {"enum": ["allowed", "review_required", "prohibited_by_default", "unknown", "restricted"]},
+        "fulltext": {"enum": ["allowed", "review_required", "prohibited_by_default", "unknown", "restricted"]},
+        "download": {"enum": ["allowed", "review_required", "prohibited_by_default", "unknown", "restricted"]},
+        "redistribution": {"enum": ["allowed", "review_required", "prohibited_by_default", "unknown", "restricted"]},
+        "commercial_use": {"enum": ["allowed", "review_required", "prohibited_by_default", "unknown", "restricted"]},
+        "policy_url": {"type": ["string", "null"]}
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["candidate", "docs_verified", "live_test_pass", "integrated", "blocked", "deprecated", "rejected"]},
+        "docs_checked_at": {"type": ["string", "null"]},
+        "live_checked_at": {"type": ["string", "null"]},
+        "evidence_ref": {"type": ["string", "null"]}
+      }
+    },
+    "origin": {
+      "type": "object",
+      "properties": {
+        "type": {"enum": ["curated", "imported", "user"]},
+        "upstream_url": {"type": ["string", "null"]},
+        "upstream_version": {"type": ["string", "null"]}
+      }
+    }
+  }
+}

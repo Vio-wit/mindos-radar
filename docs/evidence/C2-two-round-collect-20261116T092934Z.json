@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-11-16T09:29:31+00:00",
+  "rounds": [
+    {
+      "source_id": "sspai",
+      "round": 1,
+      "subscription_id": 1,
+      "status": "SUCCEEDED",
+      "counts": null,
+      "db_total": 10,
+      "sample_titles": [
+        "城市漫步指南｜夏末大阪，「青黄不接」的时节刚刚好",
+        "派早报：英伟达 CEO 黄仁勋宣布辞职等",
+        "在快 AI 时代，我是怎么把 Mole 做成一款「慢产品」的？"
+      ]
+    },
+    {
+      "source_id": "sspai",
+      "round": 2,
+      "subscription_id": 1,
+      "status": "SUCCEEDED",
+      "counts": null,
+      "db_total": 10,
+      "sample_titles": [
+        "城市漫步指南｜夏末大阪，「青黄不接」的时节刚刚好",
+        "派早报：英伟达 CEO 黄仁勋宣布辞职等",
+        "在快 AI 时代，我是怎么把 Mole 做成一款「慢产品」的？"
+      ]
+    },
+    {
+      "source_id": "nvidia-devblog",
+      "round": 1,
+      "subscription_id": 2,
+      "status": "SUCCEEDED",
+      "counts": null,
+      "db_total": 20,
+      "sample_titles": [
+        "Diagnose Distributed AI Workload Failures with NVIDIA Attribution",
+        "Use NVIDIA NeMo to Turn Agent Failures into Tests and Harness Fixes",
+        "How NVIDIA Factory Operations Blueprint Coordinates AI Agents to Investigate Production Issues"
+      ]
+    },
+    {
+      "source_id": "nvidia-devblog",
+      "round": 2,
+      "subscription_id": 2,
+      "status": "NOT_MODIFIED",
+      "counts": null,
+      "db_total": 20,
+      "sample_titles": [
+        "Diagnose Distributed AI Workload Failures with NVIDIA Attribution",
+        "Use NVIDIA NeMo to Turn Agent Failures into Tests and Harness Fixes",
+        "How NVIDIA Factory Operations Blueprint Coordinates AI Agents to Investigate Production Issues"
+      ]
+    }
+  ],
+  "distinct_external_ids": {
+    "nvidia-devblog": 20,
+    "sspai": 10
+  }
+}

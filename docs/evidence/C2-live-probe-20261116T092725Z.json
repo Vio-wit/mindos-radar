@@ -1,0 +1,201 @@
+{
+  "checked_at": "2026-11-16T09:27:25+00:00",
+  "mode": "read-only public probe; no item persisted",
+  "integrated": [
+    {
+      "status": "PASS",
+      "adapter": "rss",
+      "items": 3,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 341,
+      "sample_titles": [
+        "WeightBench: Evaluating Language Models as Weight-Space Programmers",
+        "Imitation Bootstrapped Multi-Agent Reinforcement Learning",
+        "Elliptic Sampling: Optimal Interpolant Schedules for Gaussians and Beyond"
+      ],
+      "endpoint": "https://export.arxiv.org/api/query",
+      "source_id": "arxiv-cs-ai",
+      "probe_seconds": 0.4
+    },
+    {
+      "status": "PASS",
+      "adapter": "jsonmap",
+      "items": 3,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 5995,
+      "sample_titles": [
+        "Comentario: Prevención de los factores de riesgo de los trastornos de la conduct",
+        "Factores de riesgo relacionados con trastornos en la conducta alimentaria en una",
+        "Una apuesta por la calidad, la seriedad y la independencia científica"
+      ],
+      "endpoint": "https://api.crossref.org/works",
+      "source_id": "crossref-works",
+      "probe_seconds": 6.05
+    },
+    {
+      "status": "PASS",
+      "adapter": "jsonmap",
+      "items": 3,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 2128,
+      "sample_titles": [
+        "Development and External Validation of Multiple Models for Predicting Residual A",
+        "Beyond the Alphabet: Communicating in Ancient Greece, c. 1200–500 BCE",
+        "Screening data for \"A High-Throughput Assay to Identify Context-Dependent Transl"
+      ],
+      "endpoint": "https://api.openalex.org/works",
+      "source_id": "openalex-works",
+      "probe_seconds": 2.18
+    },
+    {
+      "status": "FAILED",
+      "adapter": "jsonmap",
+      "error_code": "network",
+      "safe_error": "TimeoutError",
+      "elapsed_ms": 14452,
+      "source_id": "gutendex-popular",
+      "probe_seconds": 14.51
+    },
+    {
+      "status": "PASS",
+      "adapter": "rss",
+      "items": 3,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 160,
+      "sample_titles": [
+        "Rosetta 2 即将退役，Mac 老应用何去何从？",
+        "App+1｜不卡带：给你爱听的「老调」，配点记忆中的风味",
+        "派早报：逾十万人次联署要求黄仁勋复职"
+      ],
+      "endpoint": "https://sspai.com/feed",
+      "source_id": "sspai",
+      "probe_seconds": 0.22
+    },
+    {
+      "status": "PASS",
+      "adapter": "github_releases",
+      "items": 10,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 1672,
+      "sample_titles": [
+        "microsoft/vscode 1.146.0",
+        "microsoft/vscode 1.145.3",
+        "microsoft/vscode 1.145.2"
+      ],
+      "endpoint": "https://api.github.com",
+      "source_id": "github-releases",
+      "probe_seconds": 1.73
+    },
+    {
+      "status": "PASS",
+      "adapter": "jsonmap",
+      "items": 1,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 836,
+      "sample_titles": [
+        "react"
+      ],
+      "endpoint": "https://registry.npmjs.org/react/latest",
+      "source_id": "npm-react",
+      "probe_seconds": 0.89
+    },
+    {
+      "status": "PASS",
+      "adapter": "jsonmap",
+      "items": 1,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 421,
+      "sample_titles": [
+        "requests"
+      ],
+      "endpoint": "https://pypi.org/pypi/requests/json",
+      "source_id": "pypi-requests",
+      "probe_seconds": 0.48
+    },
+    {
+      "status": "FAILED",
+      "adapter": "jsonmap",
+      "error_code": "http_503",
+      "safe_error": "HTTP 503",
+      "elapsed_ms": 1127,
+      "source_id": "nvd-recent",
+      "probe_seconds": 1.18
+    },
+    {
+      "status": "PASS",
+      "adapter": "hackernews",
+      "items": 3,
+      "observations": 0,
+      "warnings": [],
+      "elapsed_ms": 3236,
+      "sample_titles": [
+        "How to make almost anything",
+        "Universal XSS in uBlock Origin from website-driven element picker",
+        "Qwen4-Max"
+      ],
+      "endpoint": "https://hacker-news.firebaseio.com/v0",
+      "source_id": "hacker-news",
+      "probe_seconds": 3.29
+    },
+    {
+      "status": "FAILED",
+      "adapter": "openmeteo",
+      "error_code": "network",
+      "safe_error": "URLError",
+      "elapsed_ms": 12212,
+      "source_id": "open-meteo-suzhou",
+      "probe_seconds": 12.27
+    }
+  ],
+  "extra_candidates": [
+    {
+      "id": "nvidia-newsroom-rss",
+      "url": "https://nvidianews.nvidia.com/rss/all",
+      "status": 200,
+      "content_type": "text/html; charset=utf-8",
+      "bytes": 62511,
+      "elapsed_ms": 450,
+      "preview": " \n\n\n\n<!doctype html>\n<html lang=\"en-us\" class=\"no-js\">\n<head>\n  \n  <meta charset=\"utf-8\">\n  <meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\">\n  <meta name=\"viewport\" content=\"width=device-width, i"
+    },
+    {
+      "id": "nvidia-blog-rss",
+      "url": "https://blogs.nvidia.com/feed/",
+      "status": "FAILED",
+      "error": "network: URLError"
+    },
+    {
+      "id": "nvidia-devblog-rss",
+      "url": "https://developer.nvidia.com/blog/feed/",
+      "status": 200,
+      "content_type": "application/atom+xml; charset=UTF-8",
+      "bytes": 776547,
+      "elapsed_ms": 787,
+      "preview": "<?xml version=\"1.0\" encoding=\"UTF-8\"?><feed\n  xmlns=\"http://www.w3.org/2005/Atom\"\n  xmlns:thr=\"http://purl.org/syndication/thread/1.0\"\n  xml:lang=\"\"\n  xml:base=\"https://developer.nvidia.com/blog/wp-at"
+    },
+    {
+      "id": "bangumi-calendar",
+      "url": "https://api.bgm.tv/calendar",
+      "status": "FAILED",
+      "error": "network: URLError"
+    },
+    {
+      "id": "gdelt-doc",
+      "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=NVIDIA&mode=artlist&maxrecords=3&format=json&timespan=1d",
+      "status": "FAILED",
+      "error": "http_429: HTTP 429"
+    },
+    {
+      "id": "jikan-top",
+      "url": "https://api.jikan.moe/v4/top/anime?limit=3",
+      "status": "FAILED",
+      "error": "network: URLError"
+    }
+  ]
+}

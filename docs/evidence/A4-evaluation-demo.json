@@ -1,0 +1,29 @@
+{
+  "rows": 6,
+  "comparable": 6,
+  "agreement": 0.6667,
+  "cohens_kappa": 0.5714,
+  "rule_counts": {
+    "technology": 2,
+    "ai": 2,
+    "policy": 1,
+    "other": 1
+  },
+  "human_counts": {
+    "technology": 2,
+    "ai": 2,
+    "campus": 1,
+    "opendata": 1
+  },
+  "mismatch_pairs": [
+    {
+      "rule": "policy",
+      "human": "campus"
+    },
+    {
+      "rule": "other",
+      "human": "opendata"
+    }
+  ],
+  "note": "样本量很小时 kappa 不稳定，报告里要写明样本数与标注规则。"
+}

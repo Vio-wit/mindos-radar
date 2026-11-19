@@ -1,0 +1,437 @@
+# 已接入并通过真实联网采集的来源（C2）
+# 全部为官方、免费、无需登录的公开接口。verification.evidence_ref 指向本轮探测记录。
+sources:
+  - id: hacker-news
+    name: Hacker News
+    category: technology
+    tags: [news, startup, programming]
+    provider_url: https://news.ycombinator.com/
+    docs_url: https://github.com/HackerNews/API
+    access:
+      type: rest_json
+      base_url: https://hacker-news.firebaseio.com/v0
+      auth: none
+      cost_tier: F0
+      quota: 无公开硬配额，建议 >= 1 秒/请求
+      quota_verified_at: "2026-11-16"
+    collector:
+      adapter: hackernews
+      default_interval_minutes: 120
+      max_items_per_run: 20
+      params:
+        story_type: topstories
+    rights:
+      metadata: allowed
+      fulltext: prohibited_by_default
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://news.ycombinator.com/legal
+    verification:
+      status: integrated
+      docs_checked_at: "2026-11-16"
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: arxiv-cs-ai
+    name: arXiv cs.AI 最新论文
+    category: academic
+    tags: [paper, ai, preprint]
+    provider_url: https://arxiv.org/list/cs.AI/recent
+    docs_url: https://info.arxiv.org/help/api/index.html
+    access:
+      type: rss_atom
+      base_url: https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=20
+      auth: none
+      cost_tier: F0
+      quota: 建议 <= 1 请求 / 3 秒
+      quota_verified_at: "2026-11-16"
+    collector:
+      adapter: rss
+      default_interval_minutes: 720
+      max_items_per_run: 20
+    rights:
+      metadata: allowed
+      fulltext: review_required
+      download: review_required
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://info.arxiv.org/help/api/tou.html
+    verification:
+      status: integrated
+      docs_checked_at: "2026-11-16"
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: sspai
+    name: 少数派
+    category: media
+    tags: [中文, 效率, 数码]
+    provider_url: https://sspai.com/
+    docs_url: https://sspai.com/feed
+    access: {type: rss_atom, base_url: https://sspai.com/feed, auth: none, cost_tier: F0}
+    collector: {adapter: rss, default_interval_minutes: 360, max_items_per_run: 20}
+    rights:
+      metadata: allowed
+      fulltext: prohibited_by_default
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://sspai.com/page/agreement
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: openalex-works
+    name: OpenAlex 学术作品
+    category: academic
+    tags: [paper, open-data, citation]
+    provider_url: https://openalex.org/
+    docs_url: https://docs.openalex.org/
+    access:
+      type: rest_json
+      base_url: https://api.openalex.org/works?per-page=20&sort=publication_date:desc
+      auth: none
+      cost_tier: F0
+      quota: 10 请求/秒，建议 1 请求/秒
+      quota_verified_at: "2026-11-16"
+    collector:
+      adapter: jsonmap
+      default_interval_minutes: 720
+      max_items_per_run: 20
+      params:
+        url: https://api.openalex.org/works?per-page=20&sort=publication_date:desc
+        items_path: results
+        fields:
+          external_id: id
+          title: [display_name, title]
+          url: doi
+          published_at: publication_date
+          author: authorships[0].author.display_name
+          summary: [primary_location.source.display_name]
+    rights:
+      metadata: allowed
+      fulltext: review_required
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://docs.openalex.org/how-to-use-the-api/api-overview
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: gutendex-popular
+    name: Gutendex 热门公版书
+    category: books
+    tags: [ebook, public-domain, gutenberg]
+    provider_url: https://gutendex.com/
+    docs_url: https://gutendex.com/
+    access: {type: rest_json, base_url: https://gutendex.com/books, auth: none, cost_tier: F0}
+    collector:
+      adapter: jsonmap
+      default_interval_minutes: 1440
+      max_items_per_run: 20
+      params:
+        url: https://gutendex.com/books?sort=popular
+        items_path: results
+        fields:
+          external_id: id
+          title: title
+          url: id
+          url_template: https://www.gutenberg.org/ebooks/{value}
+          author: authors[0].name
+          summary: subjects
+        kind: book
+    rights:
+      metadata: allowed
+      fulltext: allowed
+      download: allowed
+      redistribution: allowed
+      commercial_use: allowed
+      policy_url: https://www.gutenberg.org/policy/permission.html
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: github-releases
+    name: GitHub Releases 追踪
+    category: opensource
+    tags: [release, changelog, github]
+    provider_url: https://github.com/
+    docs_url: https://docs.github.com/en/rest/releases/releases
+    access:
+      type: rest_json
+      base_url: https://api.github.com
+      auth: none
+      secret_ref: github_token
+      cost_tier: F1
+      quota: 未认证 60 请求/小时；认证 5000 请求/小时
+      quota_verified_at: "2026-11-16"
+    collector:
+      adapter: github_releases
+      default_interval_minutes: 720
+      max_items_per_run: 15
+      params:
+        repos: [microsoft/vscode, openai/openai-python, python/cpython]
+        per_page: 5
+    rights:
+      metadata: allowed
+      fulltext: allowed
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://docs.github.com/en/site-policy/github-terms/github-terms-of-service
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: open-meteo-suzhou
+    name: Open-Meteo 苏州天气
+    category: weather
+    tags: [weather, forecast, no-key]
+    provider_url: https://open-meteo.com/
+    docs_url: https://open-meteo.com/en/docs
+    access: {type: rest_json, base_url: https://api.open-meteo.com/v1/forecast, auth: none, cost_tier: F0}
+    collector:
+      adapter: openmeteo
+      default_interval_minutes: 180
+      max_items_per_run: 1
+      params:
+        latitude: 31.30
+        longitude: 120.62
+        hourly: [temperature_2m, relative_humidity_2m, precipitation, wind_speed_10m]
+        forecast_days: 3
+    rights:
+      metadata: allowed
+      fulltext: allowed
+      download: allowed
+      redistribution: allowed
+      commercial_use: allowed
+      policy_url: https://open-meteo.com/en/license
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: crossref-works
+    name: Crossref 最新 DOI
+    category: academic
+    tags: [doi, metadata, publishing]
+    provider_url: https://www.crossref.org/
+    docs_url: https://api.crossref.org/swagger-ui/index.html
+    access:
+      type: rest_json
+      base_url: https://api.crossref.org/works?rows=15&sort=published&order=desc
+      auth: none
+      cost_tier: F0
+      quota: polite pool：带 mailto 更快；未声明时仍可用
+      quota_verified_at: "2026-11-16"
+    collector:
+      adapter: jsonmap
+      default_interval_minutes: 720
+      max_items_per_run: 15
+      params:
+        url: https://api.crossref.org/works?rows=15&sort=published&order=desc
+        items_path: message.items
+        date_parts: true
+        fields:
+          external_id: DOI
+          title: title
+          url: URL
+          published_at: published.date-parts
+          author: author[0].family
+          summary: container-title
+    rights:
+      metadata: allowed
+      fulltext: prohibited_by_default
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://www.crossref.org/operations-and-sustainability/access-and-distribution/
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: nvd-recent
+    name: NVD 最新 CVE
+    category: security
+    tags: [cve, vulnerability, nist]
+    provider_url: https://nvd.nist.gov/
+    docs_url: https://nvd.nist.gov/developers/vulnerabilities
+    access:
+      type: rest_json
+      base_url: https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20
+      auth: none
+      cost_tier: F0
+      quota: 无 Key 5 请求/30 秒
+      quota_verified_at: "2026-11-16"
+    collector:
+      adapter: jsonmap
+      default_interval_minutes: 720
+      max_items_per_run: 20
+      params:
+        url: https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=20
+        items_path: vulnerabilities
+        fields:
+          external_id: cve.id
+          title: cve.descriptions[0].value
+          url: cve.id
+          url_template: https://nvd.nist.gov/vuln/detail/{value}
+          published_at: cve.published
+          summary: cve.descriptions[1].value
+        kind: advisory
+    rights:
+      metadata: allowed
+      fulltext: prohibited_by_default
+      download: prohibited_by_default
+      redistribution: allowed
+      commercial_use: allowed
+      policy_url: https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: pypi-requests
+    name: PyPI requests 版本
+    category: opensource
+    tags: [python, package, release]
+    provider_url: https://pypi.org/project/requests/
+    docs_url: https://pypi.org/pypi/requests/json
+    access: {type: rest_json, base_url: https://pypi.org/pypi/requests/json, auth: none, cost_tier: F0}
+    collector:
+      adapter: jsonmap
+      default_interval_minutes: 1440
+      max_items_per_run: 1
+      params:
+        url: https://pypi.org/pypi/requests/json
+        items_path: "$"
+        fields:
+          external_id: info.version
+          title: info.name
+          summary: info.summary
+          url: info.project_url
+          author: info.author
+        kind: release
+    rights:
+      metadata: allowed
+      fulltext: allowed
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://pypi.org/policies/
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: npm-react
+    name: npm react 最新版本
+    category: opensource
+    tags: [javascript, package, release]
+    provider_url: https://www.npmjs.com/package/react
+    docs_url: https://registry.npmjs.org/react/latest
+    access: {type: rest_json, base_url: https://registry.npmjs.org/react/latest, auth: none, cost_tier: F0}
+    collector:
+      adapter: jsonmap
+      default_interval_minutes: 1440
+      max_items_per_run: 1
+      params:
+        url: https://registry.npmjs.org/react/latest
+        items_path: "$"
+        fields:
+          external_id: version
+          title: name
+          summary: description
+          url: homepage
+          author: author.name
+        kind: release
+    rights:
+      metadata: allowed
+      fulltext: allowed
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://docs.npmjs.com/policies/terms
+    verification:
+      status: integrated
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/SRC-probe-2026-11-16.json
+    origin: {type: curated}
+
+  - id: nvidia-devblog
+    name: NVIDIA Developer Blog
+    category: ai
+    tags: [nvidia, ai, gpu, developer]
+    provider_url: https://developer.nvidia.com/blog/
+    docs_url: https://developer.nvidia.com/blog/feed/
+    access:
+      type: rss_atom
+      base_url: https://developer.nvidia.com/blog/feed/
+      auth: none
+      cost_tier: F0
+      quota: null
+      quota_verified_at: null
+    collector:
+      adapter: rss
+      default_interval_minutes: 720
+      max_items_per_run: 20
+    rights:
+      metadata: review_required
+      fulltext: review_required
+      download: prohibited_by_default
+      redistribution: review_required
+      commercial_use: unknown
+      policy_url: https://www.nvidia.com/en-us/about-nvidia/legal-info/
+    verification:
+      status: integrated
+      docs_checked_at: "2026-11-16"
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/C2-live-probe-20261116T092725Z.json
+    origin: {type: curated}
+
+  - id: local-import
+    name: 本地导入（CSV/JSON）
+    category: other
+    tags: [local, import, course]
+    provider_url: null
+    docs_url: null
+    access:
+      type: manual
+      base_url: null
+      auth: none
+      cost_tier: F0
+      quota: null
+      quota_verified_at: null
+    collector:
+      adapter: manual
+      default_interval_minutes: 10080
+      max_items_per_run: 500
+    rights:
+      metadata: allowed
+      fulltext: review_required
+      download: prohibited_by_default
+      redistribution: prohibited_by_default
+      commercial_use: unknown
+      policy_url: null
+    verification:
+      status: integrated
+      docs_checked_at: "2026-11-16"
+      live_checked_at: "2026-11-16"
+      evidence_ref: docs/evidence/A4-course-case-20261116.json
+    origin: {type: curated}

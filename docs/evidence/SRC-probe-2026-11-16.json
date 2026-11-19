@@ -1,0 +1,63 @@
+[
+  {
+    "id": "arxiv-api",
+    "url": "https://export.arxiv.org/api/query?search_query=cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=3",
+    "status": 200,
+    "content_type": "application/atom+xml; charset=utf-8",
+    "bytes_read": 8884,
+    "elapsed_ms": 715,
+    "etag": false,
+    "last_modified": false
+  },
+  {
+    "id": "nvidia-blogs",
+    "url": "https://blogs.nvidia.com/feed/",
+    "status": 0,
+    "error": "URLError: <urlopen error [WinError 10054] 远程主机强迫关闭了一个现有的连接。>",
+    "elapsed_ms": 135
+  },
+  {
+    "id": "nvidia-rss-all",
+    "url": "https://nvidianews.nvidia.com/rss/all",
+    "status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "bytes_read": 62511,
+    "elapsed_ms": 547,
+    "etag": false,
+    "last_modified": false
+  },
+  {
+    "id": "github-vscode",
+    "url": "https://api.github.com/repos/microsoft/vscode/releases?per_page=1",
+    "status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes_read": 1986,
+    "elapsed_ms": 714,
+    "etag": true,
+    "last_modified": false
+  },
+  {
+    "id": "bangumi-cal",
+    "url": "https://api.bgm.tv/calendar",
+    "status": 0,
+    "error": "URLError: <urlopen error timed out>",
+    "elapsed_ms": 20058
+  },
+  {
+    "id": "gutendex-retry",
+    "url": "https://gutendex.com/books?page=1",
+    "status": 200,
+    "content_type": "application/json",
+    "bytes_read": 58829,
+    "elapsed_ms": 8687,
+    "etag": false,
+    "last_modified": true
+  },
+  {
+    "id": "guardian-alt",
+    "url": "https://www.theguardian.com/international/rss",
+    "status": 0,
+    "error": "URLError: <urlopen error timed out>",
+    "elapsed_ms": 20083
+  }
+]

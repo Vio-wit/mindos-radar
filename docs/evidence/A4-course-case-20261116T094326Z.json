@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-11-16T09:43:26+00:00",
+  "registry": {
+    "total": 108,
+    "integrated": 13,
+    "candidate": 95,
+    "load_errors": [],
+    "schema_errors": [
+      "local-import: $.provider_url: 类型应为 string",
+      "local-import: $.docs_url: 类型应为 string"
+    ]
+  },
+  "tests": {
+    "skipped": false,
+    "returncode": 1,
+    "summary": [
+      "AssertionError: 13 != 12",
+      "",
+      "----------------------------------------------------------------------",
+      "Ran 108 tests in 13.154s",
+      "",
+      "FAILED (failures=3)"
+    ],
+    "ok": false
+  },
+  "course_case": [
+    {
+      "path": "examples\\course_case\\seed_data.csv",
+      "sha256": "064e7bc22d14537053326271ca4a712daab71cabfacafd838147567104b4cd89"
+    },
+    {
+      "path": "examples\\course_case\\run_case.py",
+      "sha256": "f54e395dc64f74becbd0b036f035a0618dc84c9fb1d21a18659ef0c5b219fed6"
+    },
+    {
+      "path": "examples\\course_case\\evaluate.py",
+      "sha256": "dc8b900342e3a8c0fcd8360bc9985b76abc3d790f0aa04503f378d3a3fa5fa8c"
+    },
+    {
+      "path": "examples\\course_case\\demo_annotations.csv",
+      "sha256": "1db25a77ab0b1548d6d2a6f21bf92ff464b22564dafabe182eedf0205bba23e3"
+    }
+  ]
+}
